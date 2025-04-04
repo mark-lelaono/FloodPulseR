@@ -2,7 +2,7 @@
 % Please edit documentation in R/data_access.R
 \name{fetch_floodpulse}
 \alias{fetch_floodpulse}
-\title{Fetch Sentinel-1 GRD Data from AWS S3}
+\title{Fetch Sentinel-1 GRD Data from Google Earth Engine}
 \usage{
 fetch_floodpulse(aoi, start_date, end_date)
 }
@@ -14,8 +14,8 @@ fetch_floodpulse(aoi, start_date, end_date)
 \item{end_date}{End date (YYYYMMDD)}
 }
 \value{
-List of S3 paths to COG files
+Asset ID of the exported Sentinel-1 image in GEE
 }
 \description{
-Fetch Sentinel-1 GRD Data from AWS S3
+Fetch Sentinel-1 GRD Data from Google Earth Engine
 }

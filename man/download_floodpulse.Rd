@@ -2,12 +2,12 @@
 % Please edit documentation in R/data_access.R
 \name{download_floodpulse}
 \alias{download_floodpulse}
-\title{Download Sentinel-1 COG from AWS S3}
+\title{Download Sentinel-1 Data from GEE Asset}
 \usage{
-download_floodpulse(s3_path, output_dir = "downloads")
+download_floodpulse(asset_id, output_dir = "downloads")
 }
 \arguments{
-\item{s3_path}{S3 path from fetch_floodpulse}
+\item{asset_id}{Asset ID from fetch_floodpulse}
 
 \item{output_dir}{Local directory}
 }
@@ -15,5 +15,5 @@ download_floodpulse(s3_path, output_dir = "downloads")
 Local file path
 }
 \description{
-Download Sentinel-1 COG from AWS S3
+Download Sentinel-1 Data from GEE Asset
 }
