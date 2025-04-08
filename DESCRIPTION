@@ -4,7 +4,7 @@ Version: 0.1.0
 Authors@R: person("Mark", "Lelaono", email = "marklelaono933@gmail.com", role = c("aut", "cre"))
 Description: A simple R package to download and process Sentinel-1 GRD data from AWS S3 for flood monitoring, with a Shiny GUI.
 Depends: R (>= 4.0.0)
-Imports: aws.s3, terra, shiny, sf
+Imports: aws.s3, terra, shiny, sf, knitr
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

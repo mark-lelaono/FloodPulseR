@@ -7,7 +7,7 @@
 fetch_floodpulse(aoi, start_date, end_date)
 }
 \arguments{
-\item{aoi}{Path to shapefile (.shp) defining area of interest}
+\item{aoi}{An sf object defining the area of interest (or a path to a shapefile)}
 
 \item{start_date}{Start date (YYYYMMDD)}
 

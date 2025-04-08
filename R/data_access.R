@@ -1,5 +1,5 @@
 #' Fetch Sentinel-1 GRD Data from Google Earth Engine
-#' @param aoi Path to shapefile (.shp) defining area of interest
+#' @param aoi An sf object defining the area of interest (or a path to a shapefile)
 #' @param start_date Start date (YYYYMMDD)
 #' @param end_date End date (YYYYMMDD)
 #' @return Asset ID of the exported Sentinel-1 image in GEE
@@ -8,15 +8,20 @@ fetch_floodpulse <- function(aoi, start_date, end_date) {
   library(rgee)
   library(sf)
 
-  # Check if the file is a shapefile
-  file_ext <- tolower(tools::file_ext(aoi))
-  if (file_ext != "shp") {
-    stop("AOI must be a shapefile (.shp)")
-  }
-
   tryCatch({
-    # Read the shapefile
-    aoi_sf <- st_read(aoi, quiet = TRUE)
+    # If aoi is a character (file path), read the shapefile; otherwise, assume it's an sf object
+    if (is.character(aoi)) {
+      # Check if the file is a shapefile
+      file_ext <- tolower(tools::file_ext(aoi))
+      if (file_ext != "shp") {
+        stop("If aoi is a file path, it must be a shapefile (.shp)")
+      }
+      aoi_sf <- st_read(aoi, quiet = TRUE)
+    } else if (inherits(aoi, "sf")) {
+      aoi_sf <- aoi
+    } else {
+      stop("aoi must be either a path to a shapefile (.shp) or an sf object")
+    }
 
     # Ensure the AOI is in WGS84 (EPSG:4326)
     if (!identical(st_crs(aoi_sf)$epsg, 4326)) {
@@ -87,7 +92,7 @@ fetch_floodpulse <- function(aoi, start_date, end_date) {
 download_floodpulse <- function(asset_id, output_dir = "downloads") {
   library(rgee)
 
-  if (!dir.exists(output_dir)) dir.create(output_dir)
+  if (!dir.exists(output_dir)) dir.create(output_dir, recursive = TRUE)
 
   tryCatch({
     # Load the Asset as an ee.Image
